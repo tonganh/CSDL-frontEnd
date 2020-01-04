@@ -5,7 +5,6 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Home from './containers/Home';
 import Product from './components/Product';
-import Menu from './components/Menu';
 import MenuPizza from './components/MenuPizza';
 import MenuBurger from './components/MenuBurger';
 import MenuMilktea from './components/MenuMilktea';
