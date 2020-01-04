@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../Css/order-list.css';
 import Navbar from './NavBar';
+import axios from '../axios';
 
-class Order extends Component {
+class OrderListSearch extends Component {
     constructor(props) {
         super(props)
 
@@ -12,31 +13,41 @@ class Order extends Component {
         }
     }
 
-    async UNSAFE_componentWillMount() {
-        const username = localStorage.getItem('username');
-        try {
-            const data = await fetch(`http://localhost:5000/order/list/${username}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    credentials: 'include'
-                }
-            ).then((res) => { return res.json(); });
-            console.log(data.data);
-            this.setState({
-                orderDetails: data.data.recordset,
-                total: data.data.total
-            });
-        } catch (err) {
-            console.log(err.message);
-        }
+    // async UNSAFE_componentWillMount() {
+    //     const username = localStorage.getItem('username');
+    //     try {
+    //         const data = await fetch(`http://localhost:5000/order/list/${username}`,
+    //             {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Content-Type': 'application/json'
+    //                 },
+    //                 credentials: 'include'
+    //             }
+    //         ).then((res) => { return res.json(); });
+    //         console.log(data.data);
+    //         this.setState({
+    //             orderDetails: data.data.recordset,
+    //             total: data.data.total
+    //         });
+    //     } catch (err) {
+    //         console.log(err.message);
+    //     }
+    // }
+
+    componentDidMount() {
+        axios
+            .get(`/order/list/${this.props.match.params.orderID}`)
+            .then(data => {
+                this.setState({
+                    orders: data.data.data.recordset
+                })
+            })
+            .catch(err => console.log(err))
     }
 
     render() {
-
-        const OrderList = this.state.orderDetails.map(item => (
+        const OrderList = this.state.orders ? this.state.orders.map(item => (
             <div key={item.OrderID} className="orderlist-item" >
                 <a className="order-id" href={`/order-detail/${item.OrderID}`}>{item.OrderID}</a>
                 <div className="order-date">{item.CreateDate}</div>
@@ -44,7 +55,7 @@ class Order extends Component {
                 <div className="order-total">{item.Total}</div>
                 <div className="order-status">{item.Status}</div>
             </div>
-        ));
+        )) : '';
 
         return (
             <div>
@@ -76,4 +87,4 @@ class Order extends Component {
     }
 }
 
-export default Order;
+export default OrderListSearch;

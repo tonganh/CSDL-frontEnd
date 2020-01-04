@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import '../Css/menu.css';
 import axios from '../axios';
 import NavBar from './NavBar';
-import Footer from './Footer';
+import SearchField from './SearchField';
 
 class Menu extends Component {
     state={
         category:'pizza',
         products:[],
-        menu:true
+        activeField: [true,false,false],
+        searchText:''
     }
 
-    componentWillReceiveProps(){
-        var keyword = this.props.state.searchText ? this.props.state.searchText : '';
-        axios.get(`/product/list?pageNumber=1&pageSize=12&keyword=${keyword}`)
+    componentDidMount(){
+        axios.get(`/product/list?pageNumber=1&pageSize=12&keyword=${this.state.searchText}`)
         .then(data => {
             this.setState({
                 products: data.data.data.recordset
@@ -22,11 +22,17 @@ class Menu extends Component {
         .catch(err => console.log(err))
     }
 
-    handleChange = (event) => {{
+    handleChange = (event) => {
         this.setState({
             [event.target.name]:event.target.value
         })
-    }}
+    }
+
+    handleSearch = text => {
+        this.setState({
+            searchText:text
+        })
+    }
 
     handleCategory = (category,event) => {
         event.preventDefault();
@@ -55,7 +61,7 @@ class Menu extends Component {
                     axios.get(`filter/price?from=${this.state.from}&to=${this.state.to}&pageNumber=1&pageSize=10`)
                     .then(data => {
                         this.setState({
-                            products: data.data.data.recordsset
+                            products: data.data.data.recordset
                         })
                     })
                     .catch(err => console.log(err))
@@ -78,7 +84,7 @@ class Menu extends Component {
                 <div className="trending-item" data-aos="fade-right" data-aos-delay="500">
                     <div className="trending-item-img">
                         <a href={`/product/${item.ProductID}`} target="__blank">
-                            <img src={`./Images/${item.Image}.png`} alt="image"/>
+                            <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name}/>
                         </a>
                     </div>
                     <div className="trending-item-text">
@@ -103,10 +109,10 @@ class Menu extends Component {
 
         return (
             <div>
-                <NavBar products={this.props.state.products} handleCategory={this.handleCategory} handleSearch={this.props.handleSearch} menu={this.state.menu} Total={this.props.state.Total} count={this.props.state.count}/>
+                <NavBar products={this.props.state.products} menu={this.state.menu} Total={this.props.state.Total} count={this.props.state.count}/>
                 <div id="content">
                     <div className="content-top">
-                    <a href="/">City fun</a>
+                    <a href="/">Trang chủ</a>
                     <i className="fas fa-chevron-right" />
                     <a href="/menu">Menu</a>
                     </div>
@@ -136,34 +142,48 @@ class Menu extends Component {
                     </div>
                     {/* sort menu */}
                     <div className="sort-menu">
-                        <div className="sort-menu-left">
-                        <span className="sort-label">Sort by</span>
-                        <div className="sort-option">
-                            <div className="option-item">New</div>
-                            <div className="option-item">Best seller</div>
-                            <div className="option-item">Most view</div>
-                            <div className=" item-4">
-                            <select id='selectbox' name='sortDirection' onChange={this.handleChange} onClick={this.handleSort}>
-                                <option defaultValue disabled hidden> 
-                                    Price
-                                </option>
-                                <option value={1}>Thap den cao</option>
-                                <option value={0}>Cao den thap</option>
-                            </select>
+                            <div className="sort-menu-left">
+                                <span className="sort-label">Bộ lọc</span>
+                                <div className="sort-option">
+                                    <div className="option-item"
+                                        style={this.state.activeField[0] ? {
+                                            color: "white",
+                                            backgroundColor: "#f7462e"
+                                        } : {}}
+                                        onClick={this.handleSort}>Sản phẩm</div>
+                                    <div className="option-item"
+                                        style={this.state.activeField[1] ? {
+                                            color: "white",
+                                            backgroundColor: "#f7462e"
+                                        } : {}}
+                                        onClick={this.handleSort}>Bán chạy</div>
+                                    <div className="dropdown">
+                                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            style={this.state.activeField[2] ? {
+                                                color: "white",
+                                                backgroundColor: "#f7462e"
+                                            } : {}}>
+                                            Giá tăng dần
+                                            </button>
+                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <div className="dropdown-item" onClick={this.handleSort}>Giá tăng dần</div>
+                                            <div className="dropdown-item" onClick={this.handleSort}>Giá giảm dần</div>
+                                        </div>
+                                        <SearchField handleSearch={this.handleSearch}/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="sort-menu-right">
+                                <div className="price-range">
+                                    <div className="price-range-header">Khoảng giá:</div>
+                                    <div className="price-range-value">
+                                        <input type="text" placeholder="từ" name='from' onChange={this.handleChange} />
+                                        <div>-</div>
+                                        <input type="text" placeholder="đến" name='to' onChange={this.handleChange} />
+                                    </div>
+                                    <button onClick={(event) => { this.handleFilter(1, event); }} className="price-range-confirm btn btn-primary">Lọc</button></div>
                             </div>
                         </div>
-                        </div>
-                        <div className="sort-menu-right">
-                        <div className="price-range">
-                            <div className="price-range-header">Price range</div>
-                            <div className="price-range-value">
-                            <input type="text" placeholder="From" name='from' onChange={this.handleChange}/>
-                            <div>-</div>
-                            <input type="text" placeholder="To" name='to' onChange={this.handleChange}/>
-                            </div>
-                            <button onClick={this.handleSort} className="price-range-confirm btn btn-primary">Confirm</button></div>
-                        </div>
-                    </div>
                     </div>
                     {/* main-manu-display */}
                     <div className="main-menu-display-container area-1">
@@ -172,7 +192,6 @@ class Menu extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer/>
             </div>
         );
     }

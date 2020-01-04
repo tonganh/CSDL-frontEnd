@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import '../Css/home.css';
-import axios from '../axios';
-import Footer from './Footer';
-import trendingitem from '../Images/trending-item.jpg';
 
 class HomeContent extends Component {
     constructor(props) {
@@ -76,11 +73,11 @@ class HomeContent extends Component {
             paginations.push(i);
         }
         const Trending = this.state.trendingproducts.map(item => (
-            <div className='trending-item-root'>
+            <div key={item.ProductID} className='trending-item-root'>
                 <div className="trending-item" data-aos="fade-right" data-aos-delay="500">
                     <div className="trending-item-img">
                         <a href={`/product/${item.ProductID}`} target="__blank">
-                            <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt="image" />
+                            <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name} />
                         </a>
                     </div>
                     <div className="trending-item-text">
@@ -103,11 +100,11 @@ class HomeContent extends Component {
             </div>
         ))
         const Products = this.state.products.map(item => (
-            <div className='trending-item-root'>
+            <div key={item.ProductID} className='trending-item-root'>
                 <div className="trending-item" data-aos="fade-right" data-aos-delay="500">
                     <div className="trending-item-img">
                         <a href={`/product/${item.ProductID}`} target="__blank">
-                            <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt="image" />
+                            <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name} />
                         </a>
                     </div>
                     <div className="trending-item-text">
@@ -134,7 +131,7 @@ class HomeContent extends Component {
             //  content
             <div id="home" >
                 <div className="home-top">
-                    <a href="/">City fun</a>
+                    <a href="/">Trang chủ</a>
                 </div>
                 {/* Carousel */}
                 <div id="carouselExampleIndicators" className="carousel slide my-carousel" data-ride="carousel">
@@ -145,13 +142,13 @@ class HomeContent extends Component {
                     </ol>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src='http://localhost:5000/image/products/carousel-4.jpg' className="d-block w-100 my-img" alt="..." />
+                            <img src='http://localhost:5000/image/products/carousel-4.jpg' className="d-block w-100 my-img" alt="carousel4" />
                         </div>
                         <div className="carousel-item">
-                            <img src='http://localhost:5000/image/products/carousel-5.jpg' className="d-block w-100 my-img" alt="..." />
+                            <img src='http://localhost:5000/image/products/carousel-5.jpg' className="d-block w-100 my-img" alt="carousel5" />
                         </div>
                         <div className="carousel-item">
-                            <img src='http://localhost:5000/image/products/carousel-6.jpg' className="d-block w-100 my-img" alt="..." />
+                            <img src='http://localhost:5000/image/products/carousel-6.jpg' className="d-block w-100 my-img" alt="carousel6" />
                         </div>
                     </div>
                     <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -173,7 +170,7 @@ class HomeContent extends Component {
                     </div>
                 </div>
                 {/* main-menu */}
-                <div className="main-menu">
+                <div className="main-menu-2">
                     <div className="main-menu-header">
                         <div className="main-menu-top">ALWAY TASTY FOOD</div>
                         <div className="main-menu-center">Choose & enjoy</div>
@@ -184,7 +181,7 @@ class HomeContent extends Component {
                     {/* pagination */}
                     <div className="pagination">
                         <div className="pagination-item pag-1"
-                            onClick={(event) => {
+                            onClick={() => {
                                 this.setState({
                                     currentCategory: 'Pizza'
                                 });
@@ -194,7 +191,7 @@ class HomeContent extends Component {
                             <h2>Pizza</h2>
                         </div>
                         <div className="pagination-item pag-2"
-                            onClick={(event) => {
+                            onClick={() => {
                                 this.setState({
                                     currentCategory: 'Hamburger'
                                 });
@@ -204,7 +201,7 @@ class HomeContent extends Component {
                             <h2>Burger</h2>
                         </div>
                         <div className="pagination-item pag-3"
-                            onClick={(event) => {
+                            onClick={() => {
                                 this.setState({
                                     currentCategory: 'Milktea'
                                 });
@@ -222,10 +219,10 @@ class HomeContent extends Component {
 
                         {/* TODO: Pagination */}
                         <nav aria-label="Page navigation">
-                            <ul className="pagination justify-content-center">
+                            <ul className="pagination justify-content-center pagination-temp">
                                 <li className={`page-item ${this.state.currentPageNumber === 1 ? 'disabled' : ''}`}
                                     onClick={this.handlePrevClick}>
-                                    <a className="page-link" href="#" aria-label="Previous">
+                                    <a className="page-link" href='/' onClick={e => e.preventDefault()} aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span className="sr-only">Previous</span>
                                     </a>
@@ -237,14 +234,14 @@ class HomeContent extends Component {
                                             key={item}
                                             onClick={() => { this.handlePageChange(item) }}
                                         >
-                                            <a className="page-link" href="#">{item}</a>
+                                            <a className="page-link" href='/' onClick={e => e.preventDefault()}>{item}</a>
                                         </li>
                                     );
                                 })}
 
                                 <li className={`page-item ${this.state.currentPageNumber === this.state.maxPageNumber ? 'disabled' : ''}`}
                                     onClick={this.handleNextClick}>
-                                    <a className="page-link" href="#" aria-label="Next">
+                                    <a className="page-link" href='/' onClick={e => e.preventDefault()} aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                         <span className="sr-only">Next</span>
                                     </a>

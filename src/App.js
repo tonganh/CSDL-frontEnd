@@ -15,6 +15,7 @@ import OrderDetail from './components/OrderDetail';
 
 import Footer from '../src/components/Footer';
 import './App.scss';
+import OrderListSearch from './components/OrderListSearch.js';
 
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
@@ -32,13 +33,13 @@ class App extends Component {
     axios.get(`/cart/${localStorage.getItem('username')}`)
       .then(data => {
         this.setState({
-          products: data.data.data,
-          count: data.data.data.length
+          products: data.data.data
         })
         this.state.products.map(item => {
           this.setState({
-            Total: this.state.Total + item.Price * item.Quantity
+            Total: this.state.Total + item.Price * item.Quantity,
           })
+          this.setState({count:this.state.count+item.Quantity})
         })
       })
       .catch(err => console.log(err))
@@ -85,21 +86,58 @@ class App extends Component {
       axios.get(`/cart/${localStorage.getItem('username')}`)
         .then(data => {
           this.setState({
-            products: data.data.data,
-            count: data.data.data.length
-          })
-          this.state.products.map(item => {
-            this.setState({
-              Total: this.state.Total + item.Price * item.Quantity
-            })
+            products: data.data.data
           })
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
+        this.setState({
+          count: this.state.count + quantity,
+          Total: this.state.Total + item.Price*quantity
+        })
     }
     else {
       alert('You must log in first');
     }
   }
+
+  Decrease = (item,event) => {
+    event.preventDefault();
+    if(item.Quantity>1){
+      item.Quantity--;
+      this.setState({
+        count:this.state.count-1,
+        Total:this.state.Total-item.Price
+      });
+      axios.post('/cart/update',{
+        quantity:item.Quantity,
+        username:localStorage.getItem('username'),
+        productID:item.ProductID
+      })
+      .then(response => {
+        console.log(response.data.success)
+      })
+      .catch(err => console.log(err));  
+    } 
+}
+
+Increase = (item,event) => {
+  event.preventDefault();
+    item.Quantity++;
+    this.setState({
+      count:this.state.count+1,
+      Total: this.state.Total+item.Price
+    })
+    this.setState({Total:this.state.Total+item.Price});
+  axios.post('/cart/update',{
+      quantity:item.Quantity,
+      username:localStorage.getItem('username'),
+      productID:item.ProductID
+  })
+  .then(response => {
+      console.log(response.data.success)
+    })
+  .catch(err => console.log(err));
+}
 
   _handleSearch = text => {
     this.setState({
@@ -127,16 +165,13 @@ class App extends Component {
                 return <SignUp {...props} handleSearch={this._handleSearch} state={this.state} />
               }} />
               <Route exact path="/cart" render={(props) => {
-                return <Cart {...props} handleSearch={this._handleSearch} state={this.state} />
+                return <Cart {...props} handleSearch={this._handleSearch} Decrease={this.Decrease} Increase={this.Increase} state={this.state} />
               }} />
               <Route exact path="/order-list" render={(props) => {
                 return <OrderList {...props} handleSearch={this._handleSearch} state={this.state} />
               }} />
-              <Route exact path="/order-list/:orderID" render={(props) => {
+              <Route exact path="/order-detail/:orderID" render={(props) => {
                 return <OrderDetail {...props} handleSearch={this._handleSearch} state={this.state} />
-              }} />
-              <Route exact path="/menu" render={(props) => {
-                return <Menu {...props} addtoCart={this._addtoCart} handleSearch={this._handleSearch} state={this.state} />
               }} />
               <Route exact path="/menupizza" render={(props) => {
                 return <MenuPizza {...props} addtoCart={this._addtoCart} handleSearch={this._handleSearch} state={this.state} />
@@ -146,6 +181,9 @@ class App extends Component {
               }} />
               <Route exact path="/menumilktea" render={(props) => {
                 return <MenuMilktea {...props} addtoCart={this._addtoCart} handleSearch={this._handleSearch} state={this.state} />
+              }} />
+              <Route exact path="/order/list/:orderID" render={(props) => {
+                return <OrderListSearch {...props} handleSearch={this._handleSearch} state={this.state} />
               }} />
             </Switch>
           </React.Suspense>

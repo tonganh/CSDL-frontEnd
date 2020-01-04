@@ -1,10 +1,16 @@
 /* header */
-.header{
-    width: 100%;
-    /* background-color: #FF5000; */
-    background-image: linear-gradient(#F53D2D,#FF6633);
+.header-container{
+    position:relative;
+    height:120px
 }
 
+.header{
+    width: 100%;
+    position:fixed;
+    /* background-color: #FF5000; */
+    background-image: linear-gradient(#F53D2D,#FF6633);
+    z-index: 100;
+}
 
 .top-header{
     display:flex;
@@ -22,6 +28,9 @@
 .support span{
     color: white;
     margin: 5px;
+}
+span a{
+    margin-left: 10px;
 }
 .user{
     display: flex;
@@ -356,6 +365,7 @@
     border:0.5px solid rgb(255, 255, 255);
     border-radius: 5px;
     padding-left: 10px;
+    outline: none;
 }
 .hot-words{
     padding-left: 10px;
@@ -432,7 +442,7 @@
 .list-cart{
     display: none;
     z-index: 5;
-    width: 300px;
+    width: 320px;
     height: 300px;
     position: absolute;
     background-color:white;
@@ -454,7 +464,16 @@
     border-bottom: 0.5px solid #373F50;
 }
 
-.list-item .fa-times{
+/* .list-item-left{
+    width: 10%;
+} */
+
+.list-item-right{
+    display: flex;
+    width: 90%;
+}
+
+.list-item-left .fa-times{
 	display: none;
 	color: #fe696a;
 }
@@ -465,12 +484,13 @@
     transition: all .4s ease-in-out;
 }
 
-.list-item img{
+.list-item-right img{
+    padding: 10px 0 10px 0;
     margin-left: 5px;
 	width: 20%;
 }
 
-.list-item .content-item-order{
+.list-item-right .content-item-order{
 	display: flex;
 	flex-direction: column;
     transition: all .4s ease-in-out;
@@ -479,13 +499,21 @@
 .my-info .my-cart:hover .list-product-order{
 	display: block;
 }
-
-.list-cart .list-item:hover .fa-times{
-	display: block;
+.list-cart a{
+    text-decoration: none;
+    list-style: none;
+}
+.list-cart .list-item:hover .list-item-left .fa-times{
+    display: block;
+    font-size: 200%;
+    cursor: pointer;
+}
+.list-item:hover{
+    filter: brightness(1.2)
 }
 
 .list-cart .list-item:hover .content-item-order{
-	transform: translateX(20px);
+	transform: translateX(5px);
 }
 
 .content-item-order h3{
@@ -494,4 +522,33 @@
 .test{
     height: 1000px;
     background-color: white;
+}
+
+.search-container-1{
+    position: absolute;
+    background-color: transparent;
+    width: 45%;
+    top: 90%;
+    left: 3.5%;
+    z-index: 100;
+}
+.search-container-2{
+    position: absolute;
+    background-color: transparent;
+    width: 45%;
+    top: 90%;
+    left: 52%;
+    z-index: 100;
+}   
+.search-container-1 a{
+    width: 100%;
+    text-decoration: none;
+    /* padding-left: 10px;  */ 
+}
+.result-item{
+    background-color: white; 
+    border-bottom: 1px solid rgb(173, 168, 168);
+    text-decoration: none;
+    padding-left: 10px;
+    color: rgb(107, 103, 103);
 }

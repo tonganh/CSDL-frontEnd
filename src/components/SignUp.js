@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../Css/sign-up.css';
 import axios from '../axios';
-import Footer from './Footer';
 import Navbar from './NavBar';
 
 class SignUp extends Component {
@@ -53,59 +52,32 @@ class SignUp extends Component {
             <div>
                 <Navbar/>
                 <div className="signup">
-                    <div className="signup-top">
-                        <a href="/home">City fun</a>
-                        <i className="fas fa-chevron-right"></i>
-                        <a href="/menu">Menu</a>
-                        <i className="fas fa-chevron-right"></i>
-                        <a href="#">Chicken</a>
-                        <i className="fas fa-chevron-right"></i>
-                        <a href="/product">Japanese Chicken</a>
-                    </div>
                     <div className="signup-bottom">
                         <div className="sign-up-header">Sign Up</div>
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">User Name</label>
                                 <input type="text" className="form-control"  placeholder="User name" id="username" name="username" value={this.state.username} onChange={this.handleChange}/>
-                                <small id="passwordHelpInline" className="text-muted">
-                                    Must be 8-20 characters long.
-                                </small>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Password</label>
                                 <input type="password" className="form-control"  placeholder="Password" id="password" name="password" value={this.state.password} onChange={this.handleChange}/>
-                                <small id="passwordHelpInline" className="text-muted">
-                                    Must be 8-20 characters long.
-                                </small>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Password Confirm</label>
                                 <input type="password" className="form-control"  placeholder="Password Confirm" id="passwordcf" name="passwordcf" value={this.state.passwordcf} onChange={this.handleChange}/>
-                                <small id="passwordHelpInline" className="text-muted">
-                                    Must be 8-20 characters long.
-                                </small>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Full Name</label>
                                 <input type="text" className="form-control"  placeholder="Full Name" id="name" name="name" value={this.state.name} onChange={this.handleChange}/>
-                                <small id="passwordHelpInline" className="text-muted">
-                                    Must be 8-20 characters long.
-                                </small>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Phone</label>
                                 <input type="text" className="form-control"  placeholder="Phone" id="phone" name="phone" value={this.state.phone} onChange={this.handleChange}/>
-                                <small id="passwordHelpInline" className="text-muted">
-                                    Must be 8-20 characters long.
-                                </small>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Adress</label>
                                 <input type="text" className="form-control"  placeholder="Adress" id="address" name="address" value={this.state.address} onChange={this.handleChange}/>
-                                <small id="passwordHelpInline" className="text-muted">
-                                    Must be 8-20 characters long.
-                                </small>
                             </div>
                             <div className="form-group">
                                 <div className="form-check">
@@ -119,7 +91,6 @@ class SignUp extends Component {
                         </form>
                     </div>
                 </div>
-                <Footer/>
             </div>
         );
     }

@@ -49,19 +49,17 @@ class Menu extends Component {
     }
 
     handleChange = (event) => {
-        {
-            this.setState({
-                [event.target.name]: event.target.value
-            })
-        }
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
     handleSort = (field, direction,pageNumber) => {
         console.log(field, direction);
-        let active = [, ,];
-        if (field == 'ProductID') { active = [1, 0, 0]; }
-        if (field == 'Sold') { active = [0, 1, 0]; }
-        if (field == 'Price') { active = [0, 0, 1]; }
+        let active = [];
+        if (field === 'ProductID') { active = [1, 0, 0]; }
+        if (field === 'Sold') { active = [0, 1, 0]; }
+        if (field === 'Price') { active = [0, 0, 1]; }
         this.setState({
             currentPageNumber: 1,
             activeField: active,
@@ -123,7 +121,7 @@ class Menu extends Component {
                 <div className="trending-item" data-aos="fade-right" data-aos-delay="500">
                     <div className="trending-item-img">
                         <a href={`/product/${item.ProductID}`} target="__blank">
-                            <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt="image" />
+                            <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name} />
                         </a>
                     </div>
                     <div className="trending-item-text">
@@ -153,7 +151,7 @@ class Menu extends Component {
                 <NavBar products={this.props.state.products} handleSearch={this.props.handleSearch} menu={this.state.menu} Total={this.props.state.Total} count={this.props.state.count} />
                 <div id="content">
                     <div className="content-top">
-                        <a href="/">City fun</a>
+                        <a href="/">Trang chủ</a>
                         <i className="fas fa-chevron-right" />
                         <a href="/menu">Menu</a>
                     </div>
@@ -161,7 +159,7 @@ class Menu extends Component {
                     <div className="main-menu">
                         <div className="main-menu-header">
                             <div className="main-menu-top">ALWAY TASTY FOOD</div>
-                            <div className="main-menu-center">Choose &amp; enjoy</div>
+                            <div className="main-menu-center">Burger</div>
                             <div className="main-menu-bottom">
                                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa Cum sociis natoque penatibus.
                         </div>
@@ -187,21 +185,21 @@ class Menu extends Component {
                                         } : {}}
                                         onClick={(event) => {
                                             this.handleSort('Sold', 0,1);
-                                        }}>Bán chạy nhất</div>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        }}>Bán chạy</div>
+                                    <div className="dropdown">
+                                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             style={this.state.activeField[2] ? {
                                                 color: "white",
                                                 backgroundColor: "#f7462e"
                                             } : {}}>
                                             Giá tăng dần
                                             </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <div class="dropdown-item"
+                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <div className="dropdown-item"
                                                 onClick={(event) => {
                                                     this.handleSort('Price', 1,1);
                                                 }}>Giá tăng dần</div>
-                                            <div class="dropdown-item"
+                                            <div className="dropdown-item"
                                                 onClick={(event) => {
                                                     this.handleSort('Price', 0,1);
                                                 }}>Giá giảm dần</div>
@@ -228,10 +226,10 @@ class Menu extends Component {
                         </div>
                         {/* TODO: Pagination */}
                         <nav aria-label="Page navigation">
-                            <ul className="pagination justify-content-center">
+                            <ul className="pagination justify-content-center pagination-temp">
                                 <li className={`page-item ${this.state.currentPageNumber === 1 ? 'disabled' : ''}`}
                                     onClick={this.handlePrevClick}>
-                                    <a className="page-link" href="#" aria-label="Previous">
+                                    <a className="page-link" href='/' onClick={e => e.preventDefault()} aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span className="sr-only">Previous</span>
                                     </a>
@@ -243,14 +241,14 @@ class Menu extends Component {
                                             key={item}
                                             onClick={() => { this.handlePageChange(item) }}
                                         >
-                                            <a className="page-link" href="#">{item}</a>
+                                            <a className="page-link" href='/' onClick={e => e.preventDefault()}>{item}</a>
                                         </li>
                                     );
                                 })}
 
                                 <li className={`page-item ${this.state.currentPageNumber === this.state.maxPageNumber ? 'disabled' : ''}`}
                                     onClick={this.handleNextClick}>
-                                    <a className="page-link" href="#" aria-label="Next">
+                                    <a className="page-link" href='/' onClick={e => e.preventDefault()} aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                         <span className="sr-only">Next</span>
                                     </a>

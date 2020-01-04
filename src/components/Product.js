@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../Css/product.css';
 import NavBar from './NavBar';
-import Footer from './Footer';
 import axios from '../axios';
 
 class Product extends Component {
@@ -41,7 +40,7 @@ class Product extends Component {
                 <NavBar products={this.props.state.products} handleSearch={this.props.handleSearch} Total={this.props.state.Total} count={this.props.state.count} />
                 <div className="product">
                     <div className="product-top">
-                        <a href="/">City fun</a>
+                        <a href="/">Trang chủ</a>
                         <i className="fas fa-chevron-right"></i>
                         <a href="/menu">Menu</a>
                         <i className="fas fa-chevron-right"></i>
@@ -55,7 +54,7 @@ class Product extends Component {
                                 <img src={`http://localhost:5000/image/products/${this.state.product.Image}.png`} alt="" />
                             </div>
                             <div className="product-bottom-left-share">
-                                <div className="fb-share-button" data-href="https://cooking.nytimes.com/recipes/1019428-karaage-japanese-fried-chicken" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+                                <div className="fb-share-button" data-href="https://cooking.nytimes.com/recipes/1019428-karaage-japanese-fried-chicken" data-layout="button_count" data-size="small"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                                 <a href={`https://twitter.com/intent/tweet?button_hashtag=food&ref_src=twsrc%5Etfw`} className="twitter-hashtag-button" data-url="https://developers.facebook.com/docs/sharing/messenger/web/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
                             </div>
                         </div>
@@ -88,7 +87,6 @@ class Product extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </div>
         );
     }

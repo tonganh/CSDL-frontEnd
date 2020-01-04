@@ -54,19 +54,18 @@ class OrderDetail extends Component {
 
     render() {
         const orderList = this.state.orderList.map(item => (
-            <div class="cart-item">
-
-                <div class="cart-img">
+            <div className='order-item' key={item.ProductID}>
+                <div className="order-img">
                     <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.ProductID} />
                 </div>
-                <div className="cart-description">
+                <div className="order-description">
                     <span>{item.Name}</span>
                 </div>
-                <div className="cart-price">
+                <div className="order-price">
                     <span>{item.Price}</span>
                 </div>
-                <div class="cart-quantity">
-                    <div class="quantity">
+                <div className="order-quantity">
+                    <div className="quantity">
                         {item.Quantity}
                     </div>
                 </div>
@@ -76,32 +75,32 @@ class OrderDetail extends Component {
         return (
             <div>
                 <NavBar products={this.props.state.products} handleSearch={this.props.handleSearch} Total={this.props.state.Total} count={this.props.state.count} />
-                <div class="orderdetail">
-                    <div class="orderdetail-top">
+                <div className="orderdetail">
+                    <div className="orderdetail-top">
                         <a href="/home">Trang chủ</a>
-                        <i class="fas fa-chevron-right"></i>
+                        <i className="fas fa-chevron-right"></i>
                         <a href="/order-list">Đơn hàng</a>
-                        <i class="fas fa-chevron-right"></i>
+                        <i className="fas fa-chevron-right"></i>
                         <a href="/order-detail">{this.state.orderID}</a>
                     </div>
-                    <div class="orderdetail-bottom">
-                        <div class="orderdetail-bottom-left">
-                            <div class="orderdetail-bottom-left-top">
-                                <div class="list-header">
+                    <div className="orderdetail-bottom">
+                        <div className="orderdetail-bottom-left">
+                            <div className="orderdetail-bottom-left-top">
+                                <div className="list-header-2">
                                     Đơn hàng {this.state.orderID}
                                 </div>
                             </div>
-                            <div class="orderdetail-bottom-left-bottom">
-                                <div class="cart-item-header">
-                                    <div class="header-name">Product</div>
-                                    <div class="header-price">Price</div>
-                                    <div class="header-quanity">Quantity</div>
+                            <div className="orderdetail-bottom-left-bottom">
+                                <div className="order-item-header">
+                                    <div className="header-name">Product</div>
+                                    <div className="header-price">Price</div>
+                                    <div className="header-quanity">Quantity</div>
                                 </div>
                                 {orderList}
                             </div>
                         </div>
-                        <div class="orderdetail-bottom-right">
-                            <div className="cart-summary">
+                        <div className="orderdetail-bottom-right">
+                            <div className="order-summary">
                                 <div className="summary-header">
                                     Thông tin đơn hàng
                                 </div>

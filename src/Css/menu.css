@@ -9,6 +9,9 @@
 }
 
 /* content */
+#content{
+    padding-bottom: 50px;
+}
 #menu{
     background-color: #f1f1f1;
     width: 100%;
@@ -173,7 +176,7 @@
     justify-content: center;
     align-items: center;
     /* background-color: rgb(212, 226, 212); */
-    margin: 15px 0 0 15px;
+    /* margin: 15px 0 0 15px; */
 }
 .pagination-item{
     display:flex;
@@ -439,3 +442,11 @@ select:focus{
     margin-top: 5px;
 }
 
+.search-menu{
+    margin-left: 10px;
+}
+.search-menu form input{
+    line-height: inherit;
+    outline: none;
+    padding-left: 10px;
+}

@@ -14,14 +14,14 @@ class Footer extends Component {
                         </div>
                         <div className="top-footer-left-description">
                             <h3>
-                                Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo. Vestibulum mattis, nisi ut faucibus commodo, risus ex commodo.
+                                Được thành lập từ năm 2019 với 3 nhà sáng lập. Fooddev tự hào là 1 trong 10 website bán hàng  online hàng đầu Việt Nam.
                             </h3>
                         </div>
                         <div className="top-footer-left-icon">
                             <a href="https://www.facebook.com/tatuan19" target="__blank"><i className="fab fa-facebook"></i></a>
-                            <i className="fab fa-youtube"></i>
-                            <i className="fab fa-instagram"></i>
-                            <i className="fas fa-envelope-square"></i>
+                            <a href="https://www.youtube.com/channel/UCiF_9u_6OLFuQ5UZe8il94w?view_as=subscriber" target="__blank"><i className="fab fa-youtube"></i></a>
+                            <a href="https://www.instagram.com/locckhl/?hl=vi" target="__blank"><i className="fab fa-instagram"></i></a>
+                            <a href="mailto:locckhl123@gmail.com" target="__blank"><i className="fas fa-envelope-square"></i></a>
                         </div>
                     </div>
                     <div className="top-footer-right">
@@ -34,7 +34,7 @@ class Footer extends Component {
                                     <div>
                                         <h3>Our location</h3>
                                         <p>
-                                            150 teuk laak 2 near Khan Tuol Kouk, Phnom Penh
+                                            D9 508 Đại học Bách khoa Hà Nội
                                         </p>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@ class Footer extends Component {
                                     <i className="fas fa-phone"></i>
                                     <div>
                                         <h3>Phones</h3>
-                                        <p>+855-086-8634-836</p>
+                                        <p>+84-0123-456-789</p>
                                     </div>
                                     
                                 </div>
@@ -50,7 +50,7 @@ class Footer extends Component {
                                     <i className="fas fa-envelope-open-text"></i>
                                     <div>
                                         <h3>Email</h3>  
-                                        <p>blahblah@example.com</p>
+                                        <p>Vladimir@lol.com</p>
                                     </div>
                                     
                                 </div>

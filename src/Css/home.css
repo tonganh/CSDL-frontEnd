@@ -13,7 +13,6 @@
     background-color: #f1f1f1;
     width: 100%;
     margin: 0 auto;
-    height: 5000px;
 }
 .home-top{
     display: flex;
@@ -99,6 +98,8 @@
     transition-duration: 0.7s;
 }
 .trending-item:hover .trending-item-expand{
+    background: transparent;
+    z-index: 20;
     display: block;
     transition: ease-in 3s;
 }
@@ -143,10 +144,11 @@
 }
 
 /* main menu */
-.main-menu{
+.main-menu-2{
     width: 90%;
     background-color: white;
     margin: 0 auto;
+    padding-bottom: 50px;
 }
 .main-menu-header{
     display:flex;
@@ -172,11 +174,15 @@
     margin-top: 30px;
 }
 .pagination{
+    
     display:flex;
     justify-content: center;
     align-items: center;
     /* background-color: rgb(212, 226, 212); */
-    margin: 15px 0 0 15px;
+    /* margin: 15px 0 20px 15px; */
+}
+.pagination-temp{
+    margin-top: 50px;
 }
 .pagination-item{
     display:flex;
