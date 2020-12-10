@@ -9,7 +9,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <NavBar products={this.props.state.products} handleSearch={this.props.handleSearch} Total={this.props.state.Total} count={this.props.state.count}/>
+                <NavBar products={this.props.state.products} Total={this.props.state.Total} count={this.props.state.count}/>
                 <HomeContent addtoCart={this.props.addtoCart}/>
             </div>
         );

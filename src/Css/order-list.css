@@ -11,7 +11,6 @@
 .orderlist{
     width: 100%;
     background-color: #f1f1f1;
-    height: 700px;
 }
 .orderlist-top{
 display: flex;
@@ -110,7 +109,7 @@ margin-top: 3px;
     align-items: baseline;
 }
 .top-footer-right-header h2{
-    color: yellow;
+    color: orangered;
     font-size: 30px;
     font-weight: bold;
 }

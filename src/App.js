@@ -18,8 +18,6 @@ import OrderListSearch from './components/OrderListSearch.js';
 
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
-// Containers
-const DefaultLayout = React.lazy(() => import('./containers/DefaultLayout'));
 
 class App extends Component {
   state = {
@@ -138,51 +136,44 @@ Increase = (item,event) => {
   .catch(err => console.log(err));
 }
 
-  _handleSearch = text => {
-    this.setState({
-      searchText: text
-    })
-  }
-
   render() {
     return (
       <div>
         <BrowserRouter>
           <React.Suspense fallback={loading()}>
             <Switch>
-              {/* <Route path="/" name="Home" render={props => <DefaultLayout {...props} />} /> */}
               <Route exact path="/" render={(props) => {
-                return <Home {...props} handleSearch={this._handleSearch} addtoCart={this._addtoCart} state={this.state} />
+                return <Home {...props} addtoCart={this._addtoCart} state={this.state} />
               }} />
               <Route exact path="/signin" render={(props) => {
-                return <SignIn {...props} handleSearch={this._handleSearch} state={this.state} _onLogin={this._onLogin} />
+                return <SignIn {...props} state={this.state} _onLogin={this._onLogin} />
               }} />
               <Route exact path="/product/:productID" render={(props) => {
-                return <Product {...props} handleSearch={this._handleSearch} addtoCart={this._addtoCart} state={this.state} />
+                return <Product {...props} addtoCart={this._addtoCart} state={this.state} />
               }} />
               <Route exact path="/signup" render={(props) => {
-                return <SignUp {...props} handleSearch={this._handleSearch} state={this.state} />
+                return <SignUp {...props} state={this.state} />
               }} />
               <Route exact path="/cart" render={(props) => {
-                return <Cart {...props} handleSearch={this._handleSearch} Decrease={this.Decrease} Increase={this.Increase} state={this.state} />
+                return <Cart {...props} Decrease={this.Decrease} Increase={this.Increase} state={this.state} />
               }} />
               <Route exact path="/order-list" render={(props) => {
-                return <OrderList {...props} handleSearch={this._handleSearch} state={this.state} />
+                return <OrderList {...props} state={this.state} />
               }} />
               <Route exact path="/order-detail/:orderID" render={(props) => {
-                return <OrderDetail {...props} handleSearch={this._handleSearch} state={this.state} />
+                return <OrderDetail {...props} state={this.state} />
               }} />
               <Route exact path="/menupizza" render={(props) => {
-                return <MenuPizza {...props} addtoCart={this._addtoCart} handleSearch={this._handleSearch} state={this.state} />
+                return <MenuPizza {...props} addtoCart={this._addtoCart}state={this.state} />
               }} />
               <Route exact path="/menuburger" render={(props) => {
-                return <MenuBurger {...props} addtoCart={this._addtoCart} handleSearch={this._handleSearch} state={this.state} />
+                return <MenuBurger {...props} addtoCart={this._addtoCart}state={this.state} />
               }} />
               <Route exact path="/menumilktea" render={(props) => {
-                return <MenuMilktea {...props} addtoCart={this._addtoCart} handleSearch={this._handleSearch} state={this.state} />
+                return <MenuMilktea {...props} addtoCart={this._addtoCart} state={this.state} />
               }} />
               <Route exact path="/order/list/:orderID" render={(props) => {
-                return <OrderListSearch {...props} handleSearch={this._handleSearch} state={this.state} />
+                return <OrderListSearch {...props} state={this.state} />
               }} />
             </Switch>
           </React.Suspense>
