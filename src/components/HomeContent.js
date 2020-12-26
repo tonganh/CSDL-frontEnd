@@ -75,36 +75,42 @@ class HomeContent extends Component {
         const Trending = this.state.trendingproducts.map(item => (
             <div key={item.ProductID} className='trending-item-root'>
                 <div className="trending-item" data-aos="fade-right" data-aos-delay="500">
-                    <div className="trending-item-img">
-                        <a href={`/product/${item.ProductID}`} target="__blank">
-                            <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name} 
-                            style={{
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeate',
-                                height: '300px',
-                                width: '100%'
-                            }}/>
-                        </a>
-                    </div>
-                    <div className="trending-item-text">
-                        <a href={`/product/${item.ProductID}`} target="__blank">
-                            <h2>{item.Name}</h2>
-                        </a>
+                    <div className="product-img-name-price">
+
+                        <div className="product-img-name" >
+                            <div className="trending-item-img">
+                            <a href={`/product/${item.ProductID}`} target="__blank">
+                                <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name}
+                                    style={{
+                                        backgroundPosition: 'center',
+                                        backgroundRepeat: 'no-repeate',
+                                        height: '300px',
+                                        width: '100%',
+                                        border: '1px solid black'
+                                    }} />
+                            </a>
+                        </div>
+                        <div className="trending-item-text">
+                            <a href={`/product/${item.ProductID}`} target="__blank">
+                                <h2>{item.Name}</h2>
+                            </a>
+                        </div>
                     </div>
                     <div className="trending-item-cost">
                         <span>{item.Price}đ</span>
                     </div>
-                    <div>Số lượng đã bán: {item.Sold}</div>
-                    <a href='/' onClick={(event) => { this.props.addtoCart(item, 1, event) }}>
-                        <div className="trending-item-expand">
-                            <div className="expand-cart">
-                                <i className="fas fa-cart-plus"></i>
-                                <p> Thêm vào giỏ hàng</p>
-                            </div>
-                        </div>
-                    </a>
+                    <div className="productSold">Số lượng đã bán: {item.Sold}</div>
                 </div>
+                <a href='/' onClick={(event) => { this.props.addtoCart(item, 1, event) }}>
+                    <div className="trending-item-expand">
+                        <div className="expand-cart">
+                            <i className="fas fa-cart-plus"></i>
+                            <p> Thêm vào giỏ hàng</p>
+                        </div>
+                    </div>
+                </a>
             </div>
+            </div >
         ))
         const Products = this.state.products.map(item => (
             <div key={item.ProductID} className='trending-item-root'>

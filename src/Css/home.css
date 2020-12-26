@@ -59,9 +59,9 @@
     /* opacity: 0;
     height: 0; */
     margin-top: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     
 }
@@ -71,7 +71,8 @@
     background-color: transparent;
 }
 .trending-item-root{
-    width: 25%
+    width: 25%;
+    margin-bottom: 3em;
 }
 .trending-item{
     padding: 20px;
@@ -114,12 +115,24 @@
     margin-top: 15px;
     font-weight: bold;
     text-align: center;
+    overflow: hidden;
+}
+.nav .nav-ul > li a {
+    text-decoration: none;
+    line-height: 2em;
+    display: block;
+    position: relative;
+    color: white;
 }
 .trending-item-cost{
     text-align: center;
     color: #82AE47;
     margin-bottom: 20px;
     font-size: 1.5rem;
+}
+.productSold {
+    margin-bottom: 16px;
+    text-align: center;
 }
 .trending-item-img img{
     width: 100%;

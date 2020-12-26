@@ -18,10 +18,10 @@ class Footer extends Component {
                             </h3>
                         </div>
                         <div className="top-footer-left-icon">
-                            <a href="https://www.facebook.com/tatuan19" target="__blank"><i className="fab fa-facebook"></i></a>
-                            <a href="https://www.youtube.com/channel/UCiF_9u_6OLFuQ5UZe8il94w?view_as=subscriber" target="__blank"><i className="fab fa-youtube"></i></a>
-                            <a href="https://www.instagram.com/locckhl/?hl=vi" target="__blank"><i className="fab fa-instagram"></i></a>
-                            <a href="mailto:locckhl123@gmail.com" target="__blank"><i className="fas fa-envelope-square"></i></a>
+                            <a href="https://www.facebook.com/chemistryismylove/" target="__blank"><i className="fab fa-facebook"></i></a>
+                            <a href="https://www.youtube.com/channel/UC31A9MHOnRJNPJe3TbCvTdA" target="__blank"><i className="fab fa-youtube"></i></a>
+                            <a href="https://www.instagram.com/anh.tn4040/?hl=vi" target="__blank"><i className="fab fa-instagram"></i></a>
+                            <a href="mailto:anh.tn184004@sis.hust.edu.vn" target="__blank"><i className="fas fa-envelope-square"></i></a>
                         </div>
                     </div>
                     <div className="top-footer-right">
@@ -42,7 +42,7 @@ class Footer extends Component {
                                     <i className="fas fa-phone"></i>
                                     <div>
                                         <h3>Điện thoại</h3>
-                                        <p>+84-0123-456-789</p>
+                                        <p>0369037471</p>
                                     </div>
                                     
                                 </div>
@@ -50,7 +50,7 @@ class Footer extends Component {
                                     <i className="fas fa-envelope-open-text"></i>
                                     <div>
                                         <h3>Email</h3>  
-                                        <p>Vladimir@lol.com</p>
+                                        <p>anh.tn184040@sis.hust.edu.vn</p>
                                     </div>
                                     
                                 </div>

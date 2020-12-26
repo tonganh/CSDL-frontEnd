@@ -162,9 +162,9 @@ class NavBar extends Component {
                             <span className="support">|</span>
                             <span>
                                 Follow us
-                                <a href="https://www.facebook.com/tatuan19" target="__blank"><i className="fab fa-facebook"></i></a>
-                                <a href="https://www.instagram.com/locckhl/?hl=vi" target="__blank"><i className="fab fa-instagram"></i></a>
-                                <a href="https://www.youtube.com/channel/UCiF_9u_6OLFuQ5UZe8il94w?view_as=subscriber"><i className="fab fa-youtube"></i></a>
+                                <a href="https://www.facebook.com/chemistryismylove/" target="__blank"><i className="fab fa-facebook"></i></a>
+                                <a href="https://www.youtube.com/channel/UC31A9MHOnRJNPJe3TbCvTdA" target="__blank"><i className="fab fa-youtube"></i></a>
+                                <a href="https://www.instagram.com/anh.tn4040/?hl=vi" target="__blank"><i className="fab fa-instagram"></i></a>
                             </span>
                         </div>
                         <div className="user">

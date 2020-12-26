@@ -63,11 +63,19 @@
     /* opacity: 0;
     height: 0; */
     margin-top: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     
+}
+.product-img-name-price{
+    margin-bottom: 2em;
+}
+.product-img-name{
+    display: flex;
+    flex-direction: column;
+    height: 30em;
 }
 .trending-item-container .trending-item-root{
     width: 25%;
@@ -75,15 +83,9 @@
     background-color: transparent;
 }
 .trending-item{
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
     display: flex;
-    /* background-color: rgb(241, 209, 209); */
-    /* background-image: url(../Images/trending-item.jpg);
-    background-size: cover;
-    transition-property: all;
-    transition-duration: 2s;
-    transition-timing-function: ease-in-out; */
-    /* -moz-transition-delay: ; */
+
     position: relative;
 	flex-direction: column;
 	justify-content: space-between;
@@ -107,6 +109,7 @@
     margin-top: 15px;
     font-weight: bold;
     text-align: center;
+    overflow: hidden;
 }
 .trending-item-cost{
     text-align: center;
