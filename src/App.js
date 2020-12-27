@@ -11,7 +11,7 @@ import MenuMilktea from './components/MenuMilktea';
 import Cart from './components/Cart';
 import OrderList from './components/OrderList';
 import OrderDetail from './components/OrderDetail';
-
+import  Admin  from "../src/admin/Admin";
 import Footer from '../src/components/Footer';
 import './App.scss';
 import OrderListSearch from './components/OrderListSearch.js';
@@ -147,6 +147,9 @@ Increase = (item,event) => {
               }} />
               <Route exact path="/signin" render={(props) => {
                 return <SignIn {...props} state={this.state} _onLogin={this._onLogin} />
+              }} />
+              <Route exact path="/admin" render={(props) => {
+                return <Admin {...props} state={this.state} _onLogin={this._onLogin} />
               }} />
               <Route exact path="/product/:productID" render={(props) => {
                 return <Product {...props} addtoCart={this._addtoCart} state={this.state} />

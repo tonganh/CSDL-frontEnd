@@ -156,13 +156,13 @@ class HomeContent extends Component {
                     </ol>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src='http://localhost:5000/image/products/carousel-4.jpg' className="d-block w-100 my-img" alt="carousel4" />
+                            <img src='http://localhost:5000/image/products/hamburger-slider.jpg' className="d-block w-100 my-img" alt="carousel4" />
                         </div>
                         <div className="carousel-item">
                             <img src='http://localhost:5000/image/products/carousel-5.jpg' className="d-block w-100 my-img" alt="carousel5" />
                         </div>
                         <div className="carousel-item">
-                            <img src='http://localhost:5000/image/products/carousel-6.jpg' className="d-block w-100 my-img" alt="carousel6" />
+                            <img src='http://localhost:5000/image/products/1eb17d5541d71df9.jpg' className="d-block w-100 my-img" alt="carousel6" />
                         </div>
                     </div>
                     <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

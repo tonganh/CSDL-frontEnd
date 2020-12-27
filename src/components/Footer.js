@@ -14,7 +14,7 @@ class Footer extends Component {
                         </div>
                         <div className="top-footer-left-description">
                             <h3>
-                                Được thành lập từ năm 2019 với 3 nhà sáng lập. Fooddev tự hào là 1 trong 10 website bán hàng  online hàng đầu Việt Nam.
+                                Được thành lập vào cuối năm 2020. Tự hào là nhóm đoàn kết nhất VBB ^_^.
                             </h3>
                         </div>
                         <div className="top-footer-left-icon">
@@ -34,7 +34,7 @@ class Footer extends Component {
                                     <div>
                                         <h3>Địa chỉ</h3>
                                         <p>
-                                            D9 508 Đại học Bách khoa Hà Nội
+                                            Việt Nhật 01-K63.
                                         </p>
                                     </div>
                                 </div>

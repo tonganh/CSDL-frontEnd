@@ -294,7 +294,7 @@
 .footer{
     width: 100%;
     height: 350px;
-    background-color:#212121;
+    background-color: #f59898;
 }
 .top-footer, .top-footer-left, .top-footer-right, .top-footer-left-icon, .top-footer-right-home,.info{
     display: flex;
