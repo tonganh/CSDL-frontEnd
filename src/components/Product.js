@@ -35,6 +35,11 @@ class Product extends Component {
     }
 
     render() {
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        const value = this.state.product.Price;
+        console.log('this.state.product.Price', numberWithCommas(''+value));
         return (
             <div>
                 <NavBar products={this.props.state.products} handleSearch={this.props.handleSearch} Total={this.props.state.Total} count={this.props.state.count} />
@@ -53,17 +58,17 @@ class Product extends Component {
                             <div className="product-bottom-left-img">
                                 <img src={`http://localhost:5000/image/products/${this.state.product.Image}.png`} alt="" />
                             </div>
-                            <div className="product-bottom-left-share">
+                            {/* <div className="product-bottom-left-share">
                             <div class="fb-share-button" data-href="https://www.foody.vn/ha-noi/citea-fun-tea-coffee-ta-quang-buu" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.foody.vn%2Fha-noi%2Fcitea-fun-tea-coffee-ta-quang-buu&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                                 <a href={`https://twitter.com/intent/tweet?button_hashtag=food&ref_src=twsrc%5Etfw`} className="twitter-hashtag-button" data-url="https://developers.facebook.com/docs/sharing/messenger/web/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="product-bottom-right">
                             <div className="product-name">{this.state.product.Name}</div>
                             <div className="product-description">
                                 {this.state.product.Info}
                             </div>
-                            <div className="product-price">{this.state.product.Price}đ</div>
+                            <div className="product-price">{numberWithCommas(''+value)}đ</div>
                             <div className="product-option">
                                 <div>Số lượng đã bán: {this.state.product.Sold}</div>
                                 <div className="option-quantity">

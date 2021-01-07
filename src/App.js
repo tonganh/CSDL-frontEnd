@@ -11,13 +11,13 @@ import MenuMilktea from './components/MenuMilktea';
 import Cart from './components/Cart';
 import OrderList from './components/OrderList';
 import OrderDetail from './components/OrderDetail';
-import  Admin  from "../src/admin/Admin";
+import Admin from "../src/admin/Admin";
+import Report from "../src/admin/Report";
 import Footer from '../src/components/Footer';
 import './App.scss';
 import OrderListSearch from './components/OrderListSearch.js';
 
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
-
 
 class App extends Component {
   state = {
@@ -36,7 +36,7 @@ class App extends Component {
           this.setState({
             Total: this.state.Total + item.Price * item.Quantity,
           })
-          this.setState({count:this.state.count+item.Quantity})
+          this.setState({ count: this.state.count + item.Quantity })
         })
       })
       .catch(err => console.log(err))
@@ -56,7 +56,11 @@ class App extends Component {
           console.log(this.state)
           localStorage.setItem('username', response.data.username)
           console.log(response.data.username)
-          window.location.href = '/';
+          if (response.data.permission === '0002') {
+            window.location.href = '/admin';
+          } else {
+            window.location.href = '/';
+          }
         }
         else {
           alert("Wrong username or password");
@@ -87,54 +91,54 @@ class App extends Component {
           })
         })
         .catch(err => console.log(err));
-        this.setState({
-          count: this.state.count + quantity,
-          Total: this.state.Total + item.Price*quantity
-        })
+      this.setState({
+        count: this.state.count + quantity,
+        Total: this.state.Total + item.Price * quantity
+      })
     }
     else {
       alert('You must log in first');
     }
   }
 
-  Decrease = (item,event) => {
+  Decrease = (item, event) => {
     event.preventDefault();
-    if(item.Quantity>1){
+    if (item.Quantity > 1) {
       item.Quantity--;
       this.setState({
-        count:this.state.count-1,
-        Total:this.state.Total-item.Price
+        count: this.state.count - 1,
+        Total: this.state.Total - item.Price
       });
-      axios.post('/cart/update',{
-        quantity:item.Quantity,
-        username:localStorage.getItem('username'),
-        productID:item.ProductID
+      axios.post('/cart/update', {
+        quantity: item.Quantity,
+        username: localStorage.getItem('username'),
+        productID: item.ProductID
       })
+        .then(response => {
+          console.log(response.data.success)
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
+  Increase = (item, event) => {
+    event.preventDefault();
+    item.Quantity++;
+    this.setState({
+      count: this.state.count + 1,
+      Total: this.state.Total + item.Price
+    })
+    this.setState({ Total: this.state.Total + item.Price });
+    axios.post('/cart/update', {
+      quantity: item.Quantity,
+      username: localStorage.getItem('username'),
+      productID: item.ProductID
+    })
       .then(response => {
         console.log(response.data.success)
       })
-      .catch(err => console.log(err));  
-    } 
-}
-
-Increase = (item,event) => {
-  event.preventDefault();
-    item.Quantity++;
-    this.setState({
-      count:this.state.count+1,
-      Total: this.state.Total+item.Price
-    })
-    this.setState({Total:this.state.Total+item.Price});
-  axios.post('/cart/update',{
-      quantity:item.Quantity,
-      username:localStorage.getItem('username'),
-      productID:item.ProductID
-  })
-  .then(response => {
-      console.log(response.data.success)
-    })
-  .catch(err => console.log(err));
-}
+      .catch(err => console.log(err));
+  }
 
   render() {
     return (
@@ -167,10 +171,10 @@ Increase = (item,event) => {
                 return <OrderDetail {...props} state={this.state} />
               }} />
               <Route exact path="/menupizza" render={(props) => {
-                return <MenuPizza {...props} addtoCart={this._addtoCart}state={this.state} />
+                return <MenuPizza {...props} addtoCart={this._addtoCart} state={this.state} />
               }} />
               <Route exact path="/menuburger" render={(props) => {
-                return <MenuBurger {...props} addtoCart={this._addtoCart}state={this.state} />
+                return <MenuBurger {...props} addtoCart={this._addtoCart} state={this.state} />
               }} />
               <Route exact path="/menumilktea" render={(props) => {
                 return <MenuMilktea {...props} addtoCart={this._addtoCart} state={this.state} />
@@ -178,10 +182,14 @@ Increase = (item,event) => {
               <Route exact path="/order/list/:orderID" render={(props) => {
                 return <OrderListSearch {...props} state={this.state} />
               }} />
+              <Route exact path="/admin/report" render={() => {
+                return <Report />
+              }} />
+
             </Switch>
           </React.Suspense>
         </BrowserRouter>
-        <Footer/>
+        <Footer />
       </div>
 
     );

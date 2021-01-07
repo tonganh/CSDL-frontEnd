@@ -11,7 +11,7 @@
 .content{
     width: 100%;
     background-color: #f1f1f1;
-    height: 800px;
+    /* height: 800px; */
 }
 .content-top{
 display: flex;
@@ -29,12 +29,11 @@ margin-top: 3px;
 .content-bottom{
     display: flex;
     flex-direction: column;
-    /* justify-content: center ; */
-    background-color:white;
+    justify-content: center;
+    background-color: white;
     height: 500px;
     width: 90%;
     margin: 5px auto;
-    padding: 0 300px 0 300px;
 }
 
 .sign-up-header{
@@ -104,6 +103,32 @@ margin-top: 3px;
 form div{
     
 } */
-
-
-
+.top-footer-left-logo img {
+    height: 10em;
+}
+.header-line{
+    width: 100%;
+    height: 4px;
+    background-color: #ed1c24;
+    margin-bottom: 10px;
+    clear: both;
+}
+.wrapper{
+    clear: both;
+    margin: 0 auto;
+    background: url(../logo_05.png)no-repeat center center;
+    background-size: 100px;
+    height: 35px;
+    margin-bottom: 8px;
+}
+.navbar-default{
+    background-color: rgb(0, 0, 0);
+    border: none;
+}
+.linkHome{
+    height: 100%;
+    width: 100%;
+}
+.footer-left, .footer-right{
+    color: white
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../Css/header.css';
-import logo from '../logo.png';
+import logo from '../Images/logo_05.png';
 import pizza from '../pizaa-1.jpg';
 import burger from '../hamburger-nav.png';
 import milktea from '../milktea-nav.jpg';
@@ -83,6 +83,14 @@ class NavBar extends Component {
     }
 
     render() {
+        function numberWithCommas(x) {
+            if (x !== undefined) {
+                console.log('x', x);
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else return x;
+
+        }
         const prefix = this.state.products ? this.state.products.map(item => (
             <a className='search-1' key={item.ProductID} href={`/product/${item.ProductID}`}>
                 <div className='result-item' key={item.ProductID}>
@@ -98,7 +106,7 @@ class NavBar extends Component {
                         <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name} />
                         <div className="content-item-order">
                             <h3>{item.Name}</h3>
-                            <p>{item.Price}đ*{item.Quantity}</p>
+                            <p>{numberWithCommas(item.Price * item.Quantity)}đ</p>
                         </div>
                     </div>
                 </a>
@@ -265,7 +273,7 @@ class NavBar extends Component {
                             <div className="text-cart">
                                 <h5 className="txt-small">Giỏ hàng</h5>
                                 <h4 className="txt-medium">
-                                    {this.props.Total}đ
+                                    {numberWithCommas(this.props.Total)}đ
                                         <i className="fas fa-sort-down"></i>
                                 </h4>
                             </div>

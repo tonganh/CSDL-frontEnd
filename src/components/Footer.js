@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import '../Css/home.css';
-import logo from '../Images/logo.png';
+import logo from '../Images/logo_05.png';
 
 class Footer extends Component {
     render() {
         return (
             // footer
             <div className="footer">
-                <div className="top-footer">
-                    <div className="top-footer-left">
+                <div className="top-footer row">
+                    <div className="col-md-6 footer-left">
                         <div className="top-footer-left-logo">
                             <img src={logo} alt="logo"/>
                         </div>
                         <div className="top-footer-left-description">
                             <h3>
-                                Được thành lập vào cuối năm 2020. Tự hào là nhóm đoàn kết nhất VBB ^_^.
+                                Được thành lập vào cuối năm 2020. Tiên phong trong công cuộc áp dụng khoa học
+                                và công nghệ vào đời sống.
                             </h3>
                         </div>
                         <div className="top-footer-left-icon">
@@ -24,7 +25,7 @@ class Footer extends Component {
                             <a href="mailto:anh.tn184004@sis.hust.edu.vn" target="__blank"><i className="fas fa-envelope-square"></i></a>
                         </div>
                     </div>
-                    <div className="top-footer-right">
+                    <div className="col-md-6 footer-left">
                             <div className="top-footer-right-header">
                                 <h2>Thông tin liên hệ</h2>
                             </div>

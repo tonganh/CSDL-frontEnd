@@ -24,10 +24,12 @@
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     /* flex: 1; */
     height: 22em;
-  }
+    position: fixed;
+    top: 8em;
+}
   .projectTitle {
     background: #0e17c7;
     height: 7vh;
@@ -47,7 +49,7 @@
     border-top: solid 1px #707070;
     border-bottom: 0px;
     background-color: #f2f2f2;
-    height: 93vh;
+    /* height: 93vh; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,7 +65,7 @@
   .maintainEmployee .buttonDashBoard {
     margin-bottom: 5vh;
     margin-top: 3vh;
-    font-size: 3rem;
+    font-size: 2em;
   }
   .FirstColumnInEmployee .link-Employees {
     color: blue;
@@ -101,4 +103,6 @@
   .input-group .button-search {
     width: 7rem;
   }
-  
+  .linkNormal{
+    color: black;
+  }

@@ -104,6 +104,9 @@
     display: block;
     transition: ease-in 3s;
 }
+.trending-item-text{
+    height: 8em;
+}
 .trending-item-text a{
     color: tomato;
 }
@@ -146,6 +149,7 @@
     left: 0;
 	top:90%;
     z-index: 1;
+    margin-top: 20px;
 }
 .expand-cart{
 	background-color:#FE696A;
@@ -268,10 +272,11 @@
 /* main menu display */
 .sub-main-menu-display-container{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     width: 100%;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 .sub-main-menu-display-container .trending-item-root{
     width: 25%;
@@ -341,4 +346,6 @@
     /* margin-bottom: 40px; */
     margin-top: 5px;
 }
-
+.fixHeightItem {
+    /* height: 20em; */
+}

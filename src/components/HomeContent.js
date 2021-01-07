@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../Css/home.css';
 
 class HomeContent extends Component {
@@ -68,6 +69,9 @@ class HomeContent extends Component {
     }
 
     render() {
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
         const paginations = [];
         for (let i = 1; i <= this.state.maxPageNumber; i++) {
             paginations.push(i);
@@ -79,15 +83,46 @@ class HomeContent extends Component {
 
                         <div className="product-img-name" >
                             <div className="trending-item-img">
+                                <a href={`/product/${item.ProductID}`} target="__blank">
+                                    <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name}
+                                        style={{
+                                            backgroundPosition: 'center',
+                                            backgroundRepeat: 'no-repeate',
+                                            height: '300px',
+                                            width: '100%',
+                                            border: '1px solid black'
+                                        }} />
+                                </a>
+                            </div>
+                            <div className="trending-item-text">
+                                <a href={`/product/${item.ProductID}`} target="__blank">
+                                    <h2>{item.Name}</h2>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="trending-item-cost text-center">
+                            <span>{numberWithCommas(item.Price)}đ</span>
+                        </div>
+                        <div className="productSold text-center">Số lượng đã bán: {item.Sold}</div>
+                    </div>
+                    <a href='/' onClick={(event) => { this.props.addtoCart(item, 1, event) }}>
+                        <div className="trending-item-expand">
+                            <div className="expand-cart">
+                                <i className="fas fa-cart-plus"></i>
+                                <p> Thêm vào giỏ hàng</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div >
+        ))
+        const Products = this.state.products.map(item => (
+            <div key={item.ProductID} className='trending-item-root'>
+                <div className="trending-item" data-aos="fade-right" data-aos-delay="500">
+                    <div className="fixHeightItem">
+                        <div className="trending-item-img">
                             <a href={`/product/${item.ProductID}`} target="__blank">
-                                <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name}
-                                    style={{
-                                        backgroundPosition: 'center',
-                                        backgroundRepeat: 'no-repeate',
-                                        height: '300px',
-                                        width: '100%',
-                                        border: '1px solid black'
-                                    }} />
+                                <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name} />
                             </a>
                         </div>
                         <div className="trending-item-text">
@@ -96,39 +131,12 @@ class HomeContent extends Component {
                             </a>
                         </div>
                     </div>
-                    <div className="trending-item-cost">
-                        <span>{item.Price}đ</span>
-                    </div>
-                    <div className="productSold">Số lượng đã bán: {item.Sold}</div>
-                </div>
-                <a href='/' onClick={(event) => { this.props.addtoCart(item, 1, event) }}>
-                    <div className="trending-item-expand">
-                        <div className="expand-cart">
-                            <i className="fas fa-cart-plus"></i>
-                            <p> Thêm vào giỏ hàng</p>
+                    <div className="fixHeightItem">
+                        <div className="trending-item-cost">
+                            <span>{numberWithCommas(item.Price)}đ</span>
                         </div>
+                        <div className="text-center">Số lượng đã bán: {item.Sold}</div>
                     </div>
-                </a>
-            </div>
-            </div >
-        ))
-        const Products = this.state.products.map(item => (
-            <div key={item.ProductID} className='trending-item-root'>
-                <div className="trending-item" data-aos="fade-right" data-aos-delay="500">
-                    <div className="trending-item-img">
-                        <a href={`/product/${item.ProductID}`} target="__blank">
-                            <img src={`http://localhost:5000/image/products/${item.Image}.png`} alt={item.Name} />
-                        </a>
-                    </div>
-                    <div className="trending-item-text">
-                        <a href={`/product/${item.ProductID}`} target="__blank">
-                            <h2>{item.Name}</h2>
-                        </a>
-                    </div>
-                    <div className="trending-item-cost">
-                        <span>{item.Price}đ</span>
-                    </div>
-                    <div>Số lượng đã bán: {item.Sold}</div>
                     <a href='/' onClick={(event) => { this.props.addtoCart(item, 1, event) }}>
                         <div className="trending-item-expand">
                             <div className="expand-cart">
@@ -144,9 +152,9 @@ class HomeContent extends Component {
         return (
             //  content
             <div id="home" >
-                <div className="home-top">
+                {/* <div className="home-top">
                     <a href="/">Trang chủ</a>
-                </div>
+                </div> */}
                 {/* Carousel */}
                 <div id="carouselExampleIndicators" className="carousel slide my-carousel" data-ride="carousel">
                     <ol className="carousel-indicators">
@@ -156,14 +164,21 @@ class HomeContent extends Component {
                     </ol>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src='http://localhost:5000/image/products/hamburger-slider.jpg' className="d-block w-100 my-img" alt="carousel4" />
+                            <Link to='/menuBurger'>
+                                <img src='http://localhost:5000/image/products/hamburger-slider.jpg' className="d-block w-100 my-img" alt="carousel4" />
+                            </Link>
                         </div>
                         <div className="carousel-item">
-                            <img src='http://localhost:5000/image/products/carousel-5.jpg' className="d-block w-100 my-img" alt="carousel5" />
+                            <Link to="/menuPizza">
+                                <img src='http://localhost:5000/image/products/carousel-5.jpg' className="d-block w-100 my-img" alt="carousel5" />
+                            </Link>
                         </div>
                         <div className="carousel-item">
-                            <img src='http://localhost:5000/image/products/1eb17d5541d71df9.jpg' className="d-block w-100 my-img" alt="carousel6" />
+                            <Link to="/menuMilktea">
+                                <img src='http://localhost:5000/image/products/1eb17d5541d71df9.jpg' className="d-block w-100 my-img" alt="carousel6" />
+                            </Link>
                         </div>
+
                     </div>
                     <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -203,7 +218,7 @@ class HomeContent extends Component {
                                 this.getData(1);
                             }} >
                             <i className="fas fa-pizza-slice"></i>
-                            <h2>Pizza</h2>
+                            <h2>Bánh ngọt</h2>
                         </div>
                         <div className="pagination-item pag-2"
                             onClick={() => {
@@ -225,7 +240,7 @@ class HomeContent extends Component {
                                 this.getData(1);
                             }} >
                             <i className="fas fa-cocktail"></i>
-                            <h2>Milk Tea</h2>
+                            <h2>Đồ uống</h2>
                         </div>
                     </div>
                     {/* main-manu-display */}

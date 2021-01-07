@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import "./admin.css";
 import axios from "../axios";
+import { Link } from "react-router-dom";
 
 const Admin = () => {
   const [listUser, setListUser] = useState([]);
@@ -19,7 +20,7 @@ const Admin = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [addUser, setAddUser] = useState(false);
   const [deleteUser, setDeleteUser] = useState(false);
-
+  const [updateUser, setUpdateUser] = useState(false);
   const initialSate = {
     name: "",
     password: "",
@@ -81,6 +82,24 @@ const Admin = () => {
       console.log('123', err);
     })
   }
+  const SignOut = () => {
+    localStorage.removeItem("username")
+    localStorage.removeItem('cart')
+    window.location.href = '/'
+  }
+  const submitUpdate = (e) => {
+    e.preventDefault();
+    axios.post('/admin/update-user', inputState).then(data => {
+      if (data.data.message === "ok") {
+        setListUser(listUser.map((user) =>
+          user.username === inputState.username ? inputState : user))
+        setUpdateUser(false);
+      }
+    })
+  }
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   useEffect(() => {
     console.log('123123');
     setListUser(listUserData);
@@ -96,7 +115,7 @@ const Admin = () => {
           .includes(xoa_dau(searchTerm).toLowerCase())
     );
     setListUser(result);
-  }, [searchTerm]);
+  }, [listUserData, searchTerm]);
   return (
     <>
       <div className="EmployeePage">
@@ -106,9 +125,7 @@ const Admin = () => {
               <h1 className="hiSoftText">ICHI</h1>
             </div>
             <Button
-              onClick={() => {
-                localStorage.clear();
-              }}
+              onClick={SignOut}
               className="_logOut"
             >
               Log Out
@@ -120,14 +137,16 @@ const Admin = () => {
             <Row>
               <Col md={2} xs={12} className="FirstColumnInEmployee col-sm">
                 <ul className="listSelectAdmin">
+
                   <li>
-                    <h2>Dashboard</h2>
+                    <Link to="/admin">
+                      <h2 className="link-Employees" >Thành viên</h2>
+                    </Link>
                   </li>
                   <li>
-                    <h2 className="link-Employees">Thành viên</h2>
-                  </li>
-                  <li>
-                    <h2>Báo cáo</h2>
+                    <Link to="/admin/report" className="linkNormal">
+                      <h2>Doanh thu</h2>
+                    </Link>
                   </li>
                 </ul>
               </Col>
@@ -173,6 +192,7 @@ const Admin = () => {
                       <th>Username</th>
                       <th>Điện thoại</th>
                       <th>Địa chỉ</th>
+                      <th>Số tiền đã chi tiêu</th>
                       <th>Hành động</th>
                     </tr>
                   </thead>
@@ -184,22 +204,23 @@ const Admin = () => {
                           <td>{data.username || ""}</td>
                           <td>{data.phone}</td>
                           <td>{data.address}</td>
+                          <td>{numberWithCommas(data.TotalPayment)}</td>
                           <td>
                             <Button
                               className="_button-edit"
-                            // onClick={() => {
-                            //   Object.assign(values, data);
-                            //   setModalEdit(true);
-                            // }}
+                              onClick={() => {
+                                setInputSate(data);
+                                setUpdateUser(true);
+                              }}
                             >
                               Sửa
                             </Button>
                             <Button
                               className="_button-delete btn-danger"
-                            onClick={() => {
-                              setInputSate(data);
-                              setDeleteUser(true);
-                            }}
+                              onClick={() => {
+                                setInputSate(data);
+                                setDeleteUser(true);
+                              }}
                             >
                               Xóa
                             </Button>
@@ -251,7 +272,7 @@ const Admin = () => {
         </Modal.Footer>
       </Modal>
       {/* Delete user */}
-      <Modal show={deleteUser}  onHide={() => { setDeleteUser(false) }} >
+      <Modal show={deleteUser} onHide={() => { setDeleteUser(false) }} >
         <Modal.Header>
           <Modal.Title>Xác nhận từ admin.</Modal.Title>
         </Modal.Header>
@@ -260,7 +281,35 @@ const Admin = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={acptDeleteUser}>Xóa</Button>
-          <Button onClick={()=>{setDeleteUser(false)}}>Hủy</Button>
+          <Button onClick={() => { setDeleteUser(false) }}>Hủy</Button>
+        </Modal.Footer>
+      </Modal>
+      {/* Update User */}
+      <Modal show={updateUser} onHide={() => { setUpdateUser(false) }}>
+        <Modal.Header>
+          <Modal.Title>Admin.</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label htmlFor="Name">Tên:</Form.Label>
+              <Form.Control type="text" name="name" id="Name" onChange={handleChangeInput} value={inputState.name}></Form.Control>
+            </Form.Group>
+            <Form.Group>
+              <Form.Label htmlFor="password">Mật khẩu:</Form.Label>
+              <Form.Control type="text" name="password" id="password" onChange={handleChangeInput} value={inputState.password}></Form.Control>
+            </Form.Group><Form.Group>
+              <Form.Label htmlFor="Phone">Số điện thoại:</Form.Label>
+              <Form.Control type="text" name="phone" id="Phone" onChange={handleChangeInput} value={inputState.phone}></Form.Control>
+            </Form.Group><Form.Group>
+              <Form.Label htmlFor="address">Địa chỉ:</Form.Label>
+              <Form.Control type="text" name="address" id="address" onChange={handleChangeInput} value={inputState.address}></Form.Control>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={submitUpdate}>Cập nhật</Button>
+          <Button onClick={() => { setUpdateUser(false) }} className="btn btn-danger">Hủy</Button>
         </Modal.Footer>
       </Modal>
     </>

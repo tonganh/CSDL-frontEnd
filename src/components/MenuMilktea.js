@@ -113,6 +113,9 @@ class Menu extends Component {
     }
 
     render() {
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
         const paginations = [];
         for (let i = 1; i <= this.state.maxPageNumber; i++) {
             paginations.push(i);
@@ -137,7 +140,7 @@ class Menu extends Component {
                         </a>
                     </div>
                     <div className="trending-item-cost">
-                        <span>{item.Price}đ</span>
+                        <span>{numberWithCommas(item.Price)}đ</span>
                     </div>
                     <div>Số lượng đã bán: {item.Sold}</div>
                     <a href='/menuBurger' onClick={(event) => { this.props.addtoCart(item, 1, event) }}>
@@ -165,8 +168,8 @@ class Menu extends Component {
                     {/* main-menu */}
                     <div className="main-menu">
                         <div className="main-menu-header">
-                            <div className="main-menu-top">VỊ NGON TRÊN TỪNG MÓNG TAY♪♫♪♫</div>
-                            <div className="main-menu-center">{this.state.currentCategory}</div>
+                            <div className="main-menu-top">Ngọt ngào như tình yêu♪♫♪♫</div>
+                            <div className="main-menu-center">Đồ uống.</div>
                             <div className="main-menu-bottom">
                                 Đồ uống được tài trợ bải Citea fun, 1 trong những thương hiệu hàng đầu Việt Nam♥♥♥
                         </div>

@@ -129,6 +129,7 @@
     left: 0;
 	top:90%;
     z-index: 1;
+    margin-top: 20px;
 }
 .expand-cart{
 	background-color:#FE696A;
@@ -368,10 +369,11 @@ select:focus{
 /* main menu display */
 .sub-main-menu-display-container{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     width: 100%;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 .sub-main-menu-display-container .trending-item-root{
     width: 25%;

@@ -53,6 +53,9 @@ class OrderDetail extends Component {
     }
 
     render() {
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
         const orderList = this.state.orderList.map(item => (
             <div className='order-item' key={item.ProductID}>
                 <div className="order-img">
@@ -62,7 +65,7 @@ class OrderDetail extends Component {
                     <span>{item.Name}</span>
                 </div>
                 <div className="order-price">
-                    <span>{item.Price}</span>
+                    <span>{numberWithCommas(item.Price)}</span>
                 </div>
                 <div className="order-quantity">
                     <div className="quantity">
