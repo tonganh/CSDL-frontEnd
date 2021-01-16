@@ -52,7 +52,7 @@ class App extends Component {
           this.setState({
             username: response.data.username,
             id: response.data.id
-          })
+          }) 
           console.log(this.state)
           localStorage.setItem('username', response.data.username)
           console.log(response.data.username)

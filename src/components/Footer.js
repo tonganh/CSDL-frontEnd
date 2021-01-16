@@ -7,7 +7,7 @@ class Footer extends Component {
         return (
             // footer
             <div className="footer">
-                <div className="top-footer row">
+                <div className="top-footer">
                     <div className="col-md-6 footer-left">
                         <div className="top-footer-left-logo">
                             <img src={logo} alt="logo"/>

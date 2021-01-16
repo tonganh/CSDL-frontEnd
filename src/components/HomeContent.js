@@ -170,7 +170,7 @@ class HomeContent extends Component {
                         </div>
                         <div className="carousel-item">
                             <Link to="/menuPizza">
-                                <img src='http://localhost:5000/image/products/carousel-5.jpg' className="d-block w-100 my-img" alt="carousel5" />
+                                <img src='http://localhost:5000/image/products/bb0100chomotngaytroitrong-1351659092.jpg' className="d-block w-100 my-img" alt="carousel5" />
                             </Link>
                         </div>
                         <div className="carousel-item">
@@ -201,7 +201,7 @@ class HomeContent extends Component {
                 {/* main-menu */}
                 <div className="main-menu-2">
                     <div className="main-menu-header">
-                        <div className="main-menu-top">VỊ NGON TRÊN TỪNG MÓNG TAY♪♫♪♫ </div>
+                        <div className="main-menu-top">VỊ NGON TRÊN TỪNG NGÓN TAY♪♫♪♫ </div>
                         <div className="main-menu-center">Choose & enjoy</div>
                         <div className="main-menu-bottom">
                             Thực đơn gồm có Hamburger, Pizza và Milktea hảo hạng. Nhanh tay đặt hàng thôi.

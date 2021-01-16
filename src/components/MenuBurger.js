@@ -168,7 +168,7 @@ class Menu extends Component {
                     {/* main-menu */}
                     <div className="main-menu">
                         <div className="main-menu-header">
-                            <div className="main-menu-top">VỊ NGON TRÊN TỪNG MÓNG TAY♪♫♪♫</div>
+                            <div className="main-menu-top">VỊ NGON TRÊN TỪNG NGÓN TAY♪♫♪♫</div>
                             <div className="main-menu-center">{this.state.currentCategory}</div>
                             <div className="main-menu-bottom">
                                 Với công thức từ đất nước Ý cùng với hương vị truyền thống quê nhà!!!

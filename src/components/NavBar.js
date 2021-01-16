@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '../Css/header.css';
 import logo from '../Images/logo_05.png';
-import pizza from '../pizaa-1.jpg';
+import pizza from '../banh-ngot-4.jpg';
 import burger from '../hamburger-nav.png';
-import milktea from '../milktea-nav.jpg';
+import milktea from '../do-uong-co-duong.jpg';
 import axios from '../axios';
 
 class NavBar extends Component {
@@ -190,9 +190,9 @@ class NavBar extends Component {
 
                         </div>
                         <div className="nav">
-                            <ul className="nav-ul">
+                            <ul className="nav-ul"  >
                                 <li><a href="/"><b>TRANG CHỦ</b></a></li>
-                                <li><a href='/'>
+                                <li><a onClick={()=>{}} style={{color:"white"}}>
                                     <b>MENU</b>
                                     <i className="fas fa-sort-down"></i>
                                     <div id="sub-nav">
@@ -204,7 +204,7 @@ class NavBar extends Component {
                                                     height: '90px',
                                                     width: '90px'
                                                 }} /></a>
-                                                <span>Pizza</span>
+                                                <span>Bánh ngọt</span>
                                             </div>
                                             <div className="sub-nav-item">
                                                 <a href='/menuBurger'><img src={burger} alt=""
@@ -225,7 +225,7 @@ class NavBar extends Component {
                                                         height: '90px',
                                                         width: '90px'
                                                     }} /></a>
-                                                <span>Milk Tea</span>
+                                                <span>Đồ uống</span>
                                             </div>
                                         </div>
                                     </div>

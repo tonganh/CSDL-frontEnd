@@ -44,6 +44,9 @@ class SignIn extends Component {
                                 <input type="password" className="form-control" id="password" name="password" placeholder="Password"
                                     value={this.state.password} onChange={this.handleChange} />
                             </div>
+                            <div style={{margin: "2em"}}>
+                                <Link to="/signup">Đăng ký tài khoản.</Link>
+                            </div>
                             <button className="btn btn-primary">Đăng nhập</button>
                         </form>
                     </div>

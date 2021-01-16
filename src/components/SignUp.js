@@ -11,7 +11,8 @@ class SignUp extends Component {
         name: '',
         phone: '',
         address: '',
-        hasAgreed: false
+        hasAgreed: false,
+        
     }
 
     handleChange = (event) => {
@@ -27,6 +28,7 @@ class SignUp extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log('123', this.state);
         this.state.password === this.state.passwordcf ?
             axios
                 .post('/customer/register', {
@@ -37,17 +39,39 @@ class SignUp extends Component {
                     phone: this.state.phone,
                 })
                 .then(data => {
-                    console.log('The form was submitted with the following data:');
-                    console.log(data.data);
-                    alert("Đăng ký thành công");
-                    setTimeout(function () { window.location.href = '/signin'; }, 1000);
+                    if (data.data.success === false) {
+                        return alert("Username has been used")
+                    }
+                    return setTimeout(function () { window.location.href = '/signin'; }, 1000);
                 })
-                .catch(err => console.log(err))
+                .catch(err => console.log(err.data))
             : alert("Mật khẩu nhập lại không đúng")
         // console.log(this.state);
     }
 
     render() {
+        const errors = {};
+        if (this.state.username.length < 10) {
+            errors.username="Tên đăng nhập phải dài hơn 10 kí tự."
+        }
+        if (this.state.password.length < 8) {
+            errors.password = "Mật khẩu phải nhiều hơn 8 ký tự."
+        }
+        if (this.state.passwordcf !== this.state.password) {
+            errors.passwordcf = "Yêu cầu trùng với mật khẩu kể trên."
+        }
+        if (this.state.name === "") {
+            errors.name = "Không được để trống."
+        }
+        if (this.state.phone === "") {
+            errors.phone = "Không được để trống."
+        }if (this.state.address === "") {
+            errors.address = "Không được để trống."
+        }
+        if (this.state.hasAgreed ===false) {
+            errors.hasAgreed = "Bạn cần xác nhận thông tin chính xác."
+        }
+        
         return (
             <div>
                 <Navbar />
@@ -58,26 +82,38 @@ class SignUp extends Component {
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Username</label>
                                 <input type="text" className="form-control" placeholder="User name" id="username" name="username" value={this.state.username} onChange={this.handleChange} />
+                                {errors.username ? 
+                                <p style={{color:"red"}}>{errors.username}</p> : <p></p>}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Mật khẩu</label>
                                 <input type="password" className="form-control" placeholder="Password" id="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                                {errors.password ? 
+                                <p style={{color:"red"}}>{errors.password}</p> : <p></p>}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Xác nhận mật khẩu</label>
                                 <input type="password" className="form-control" placeholder="Password Confirm" id="passwordcf" name="passwordcf" value={this.state.passwordcf} onChange={this.handleChange} />
+                                {errors.passwordcf ? 
+                                <p style={{color:"red"}}>{errors.passwordcf}</p> : <p></p>}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Tên khách hàng</label>
                                 <input type="text" className="form-control" placeholder="Full Name" id="name" name="name" value={this.state.name} onChange={this.handleChange} />
+                                {errors.name ? 
+                                <p style={{color:"red"}}>{errors.name}</p> : <p></p>}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Điện thoại</label>
                                 <input type="text" className="form-control" placeholder="Phone" id="phone" name="phone" value={this.state.phone} onChange={this.handleChange} />
+                                {errors.phone ? 
+                                <p style={{color:"red"}}>{errors.phone}</p> : <p></p>}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Địa chỉ</label>
                                 <input type="text" className="form-control" placeholder="Adress" id="address" name="address" value={this.state.address} onChange={this.handleChange} />
+                                {errors.address ? 
+                                <p style={{color:"red"}}>{errors.address}</p> : <p></p>}
                             </div>
                             <div className="form-group">
                                 <div className="form-check">
@@ -85,9 +121,17 @@ class SignUp extends Component {
                                     <label className="form-check-label" htmlFor="gridCheck">
                                         Xác nhận
                                     </label>
+                                    {errors.hasAgreed ? 
+                                <p style={{color:"red"}}>{errors.hasAgreed}</p> : <p></p>}
                                 </div>
                             </div>
-                            <button type="submit" className="btn btn-primary">Đăng ký</button>
+                            {Object.keys(errors).length !== 0  ? (
+                                <button className="btn btn-danger" onClick={()=>{
+                                    console.log('errors', errors);
+                                }}>Đăng ký</button>
+                            ) : (
+                                <button onClick={this.handleSubmit} className="btn btn-primary">Đăng ký</button>
+                            )}
                         </form>
                     </div>
                 </div>
