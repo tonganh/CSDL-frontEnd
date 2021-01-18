@@ -138,6 +138,9 @@ class Cart extends Component {
     // }
 
     render() {
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
         const cartItems = this.state.cartInfo.map(item => (
             <div key={item.ProductID} className="cart-item">
                 {/* <div className="cart-checkbox">
@@ -150,7 +153,7 @@ class Cart extends Component {
                     <span>{item.Name}</span>
                 </div>
                 <div className="cart-price">
-                    <span>{item.Price}</span>
+                    <span>{numberWithCommas(item.Price)}</span>
                 </div>
                 <div className="cart-quantity">
                     <div className='quantity-sub'>
@@ -219,12 +222,12 @@ class Cart extends Component {
                                             Tạm tính:
                                         </div>
                                         <div className="sub-total-right">
-                                            {this.props.state.Total}đ
+                                            {numberWithCommas(this.props.state.Total)}đ
                                         </div>
                                     </div>
                                     <div className="ship-fee">
                                         <div className="ship-fee-left">Phí vận chuyển:</div>
-                                        <div className="ship-fee-right">{this.props.state.Total / 20}đ</div>
+                                        <div className="ship-fee-right">{numberWithCommas(this.props.state.Total / 20)}đ</div>
                                     </div>
                                 </div>
                                 {/* <div className="summary-voucher">
@@ -234,7 +237,7 @@ class Cart extends Component {
                                 <div className="summary-total">
                                     <div className="summary-total-left">Tổng:</div>
                                     <div className="summary-total-right">
-                                        <div>{this.props.state.Total * 1.05}đ</div>
+                                        <div>{numberWithCommas(this.props.state.Total * 1.05)}đ</div>
                                         <div>(đã bao gồm VAT)</div>
                                     </div>
                                 </div>

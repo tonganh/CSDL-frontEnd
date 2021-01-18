@@ -42,7 +42,8 @@ class SignUp extends Component {
                     if (data.data.success === false) {
                         return alert("Username has been used")
                     }
-                    return setTimeout(function () { window.location.href = '/signin'; }, 1000);
+                    alert('Đăng ký thành công.');
+                    setTimeout(function () { window.location.href = '/signin'; }, 1000);
                 })
                 .catch(err => console.log(err.data))
             : alert("Mật khẩu nhập lại không đúng")

@@ -47,12 +47,19 @@ class OrderListSearch extends Component {
     }
 
     render() {
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        function convertDate(x) {
+            const result = x.split('-');
+            return result[2]+'-'+result[1]+'-'+result[0];
+        }
         const OrderList = this.state.orders ? this.state.orders.map(item => (
             <div key={item.OrderID} className="orderlist-item" >
                 <a className="order-id" href={`/order-detail/${item.OrderID}`}>{item.OrderID}</a>
-                <div className="order-date">{item.CreateDate}</div>
+                <div className="order-date">{convertDate(item.CreateDate)}</div>
                 <div className="order-name">{item.Username}</div>
-                <div className="order-total">{item.Total}</div>
+                <div className="order-total">{numberWithCommas(item.Total)}đ</div>
                 <div className="order-status">{item.Status}</div>
             </div>
         )) : '';
