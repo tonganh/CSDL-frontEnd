@@ -47,8 +47,8 @@ class SignUp extends Component {
           .catch(err => console.log(err.data));
       } else {
         alert("Mật khẩu nhập lại không đúng");
-      }
-    }
+      } 
+    } else { alert("Kiểm tra lại thông tin đăng ký.")}
     // console.log(this.state);
   };
 
@@ -159,12 +159,13 @@ class SignUp extends Component {
               <div className="form-group">
                 <label htmlFor="inputAddress">Điện thoại</label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   placeholder="Phone"
                   id="phone"
                   name="phone"
                   value={this.state.phone}
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                   onChange={this.handleChange}
                 />
                 {errors.phone ? (
